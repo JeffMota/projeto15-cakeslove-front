@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Button from '../components/Button'
 import CardMaisVendido from '../components/CardMaisVendido'
 import NavBar from '../components/NavBar'
 
@@ -16,7 +17,10 @@ export default function Home() {
                     <CardMaisVendido name='Bolo de Milho' imgURL='https://img.cybercook.com.br/receitas/641/bolo-de-milho-4.jpeg' />
                 </BestSellers>
             </BestsContainer>
-
+            <ButtonsContainer>
+                <Button text='Catálogo' />
+                <Button text='Encomenda' />
+            </ButtonsContainer>
         </HomeContainer>
     )
 }
@@ -28,7 +32,10 @@ const HomeContainer = styled.div`
     width: 100vw;
     height: 100vh;
 
+    margin-top: 50px;
+
     justify-content: center;
+    align-items: center;
 
 `
 const BestsContainer = styled.div`
@@ -36,6 +43,7 @@ const BestsContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 210px;
+    margin-bottom: 70px;
     >h2{
         padding-left: 20px;
         font-size: 22px;
@@ -46,4 +54,11 @@ const BestSellers = styled.div`
     display: flex;
     overflow-x: scroll;
     width: 100vw;
+`
+const ButtonsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 130px;
 `

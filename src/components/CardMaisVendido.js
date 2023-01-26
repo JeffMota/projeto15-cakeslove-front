@@ -21,7 +21,7 @@ const MaisVendidoContainer = styled.div`
     font-size: 16px;
     color: #FFFF;
 
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: #9E7972;
 
     display: flex;
