@@ -21,12 +21,11 @@ export default function LoginPage() {
     const promise = axios.post(`${process.env.REACT_APP_API_URL}/sign-in`, body)
 
     promise.then(res => {
-      console.log(res.data)
       setInfosUser(res.data.token)
       navigate("/home")
     })
     promise.catch(err => {
-      alert(err.response.data.message)
+      alert(err.response.data)
       setPassword("")
       setEmail("")
     })
@@ -36,7 +35,7 @@ export default function LoginPage() {
 
   return (
     <Container>
-          <img src={logo} alt="Logo" />
+      <img src={logo} alt="Logo" />
       <StyledForm onSubmit={handleLogin}>
         <StyledInput
           name="email"
