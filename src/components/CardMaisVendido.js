@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export default function CardMaisVendido({ name, imgURL }) {
+export default function CardMaisVendido({ name, imgURL, func }) {
     return (
-        <MaisVendidoContainer>
+        <MaisVendidoContainer onClick={func}>
             <img src={imgURL} alt='Imagem Produto' />
             <h2>{name}</h2>
         </MaisVendidoContainer>
