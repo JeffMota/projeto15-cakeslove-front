@@ -82,7 +82,7 @@ export default function SignUpPage() {
       </StyledForm>
 
       <StyledLink to="/">
-        Já tem uma conta? Entre agora!
+        Já possui uma conta? <b>Entre</b>
       </StyledLink>
     </Container>
   )
@@ -93,12 +93,13 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color:  #FA9D9D;
+  background: #F8C1C1;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
   height: 100vh;
   img {
     margin-bottom: 47px;
-    width: 150px;
-    height: 152px;
+    width: 240px;
+    height: 239px;
   }
   @media screen and (min-width: 800px) {
     img {
@@ -113,14 +114,13 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 30px 0 25px;
   padding-left: 25px;
   padding-right: 25px;
 `
 const StyledInput = styled.input`
   width: 100%;
   height: 58px;
-  margin-bottom: 30px;
+  margin-bottom: 37px;
   padding: 10px;
   border: none;
   border-radius: 10px;
@@ -128,6 +128,7 @@ const StyledInput = styled.input`
   line-height: 25px;
   pointer-events: "all";
   background-color:  #F7F3D2;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
   color: #666666;
   &::placeholder{
     color:  rgba(0, 0, 0, 0.4);
@@ -138,9 +139,9 @@ const StyledInput = styled.input`
 `
 
 const StyledButton = styled.button`
-  border-radius: 24px;
-  margin-top: 52px;
-  /* transform: matrix(1, 0, 0, -1, 0, 0); */
+  background: #89E0E0;
+  border-radius: 20px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
   width: 111px;
   height: 36px;
   display: flex;
@@ -149,17 +150,19 @@ const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   pointer-events:  "all";
-  font-weight: 700;
+  font-weight: 800;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 23px;
   text-align: center;
-  background: #D9D9D9;
-  color: #18191A;
+  color: #FFFFFF;
 `
 const StyledLink = styled(Link)`
+  margin-top: 12px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   text-decoration: none;
-  color:  rgba(0, 0, 0, 0.7);
+  color: #605343;
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+  font-family: 'Space Grotesk';
 `

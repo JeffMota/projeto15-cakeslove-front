@@ -59,7 +59,7 @@ export default function LoginPage() {
       </StyledForm>
 
       <StyledLink to="/cadastro">
-        Não tem uma conta? Cadastre-se
+        Não tem uma conta? <b>Cadastre-se</b>
       </StyledLink>
     </Container>
   )
@@ -70,11 +70,12 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color:  #FA9D9D;
+  background: #F8C1C1;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
   height: 100vh;
   img {
-    width: 268px;
-    height:261.36px;
+    width: 259px;
+    height: 259px;
     margin-top: 10px;
   }
   @media screen and (min-width: 800px) {
@@ -90,7 +91,6 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 30px 0 25px;
   padding-left: 25px;
   padding-right: 25px;
 `
@@ -105,6 +105,7 @@ const StyledInput = styled.input`
   line-height: 25px;
   pointer-events: "all";
   background-color:  #F7F3D2;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
   color: #666666;
   &::placeholder{
     color:  rgba(0, 0, 0, 0.4);
@@ -115,8 +116,9 @@ const StyledInput = styled.input`
 `
 
 const StyledButton = styled.button`
-  border-radius: 24px;
-  /* transform: matrix(1, 0, 0, -1, 0, 0); */
+  background: #89E0E0;
+  border-radius: 20px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
   margin-top: 40px;
   width: 111px;
   height: 36px;
@@ -126,18 +128,19 @@ const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   pointer-events:  "all";
-  font-weight: 700;
+  font-weight: 800;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 23px;
   text-align: center;
-  background: #D9D9D9;
-  color: #18191A;
+  color: #FFFFFF;
 `
 const StyledLink = styled(Link)`
-  margin-top: 70px;
+  margin-top: 37px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   text-decoration: none;
-  color:  rgba(0, 0, 0, 0.7);
+  color: #605343;
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+  font-family: 'Space Grotesk';
 `
