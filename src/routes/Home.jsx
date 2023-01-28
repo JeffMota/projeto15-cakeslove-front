@@ -10,7 +10,7 @@ import PopUp from '../components/PopUp'
 import { PagesContext } from '../contexts/PagesContext.js'
 
 export default function Home() {
-    const [carrinho, setCarrinho] = useContext(PagesContext)
+    const [carrinho] = useContext(PagesContext)
     const [selecting, setSelecting] = useState(false)
     const [bestSellers, setBestSellers] = useState([])
     const [product, setProduct] = useState('')

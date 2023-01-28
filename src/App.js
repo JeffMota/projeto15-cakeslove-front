@@ -5,6 +5,7 @@ import SignUpPage from './routes/SignUp';
 import AuthProvider from './contexts/AuthContext';
 import PagesContextProvider from './contexts/PagesContext';
 import Catalogo from './routes/Catalogo';
+import CarrinhoTela from './routes/Carrinho';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path='/cadastro' element={<SignUpPage />} />
             <Route path='/home' element={<Home />} />
             <Route path='/catalogo' element={<Catalogo />} />
+            <Route path='/confirme-pedido' element={<CarrinhoTela />} />
           </Routes>
         </BrowserRouter>
       </PagesContextProvider>

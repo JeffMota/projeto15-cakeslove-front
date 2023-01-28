@@ -18,7 +18,7 @@ export default function PopAdicionar({ product, setSelecting }) {
 
     return (
         <PopContainer>
-            <h2>{product.name}</h2>
+            <h2>{product.name} - {product.price}</h2>
             <div>
                 <button onClick={() => setQuant(quant - 1)} >-</button>
                 <p>{quant}</p>
