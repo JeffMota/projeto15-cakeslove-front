@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../components/Button'
 import CardMaisVendido from '../components/CardMaisVendido'
@@ -12,13 +13,15 @@ export default function Home() {
     const [carrinho, setCarrinho] = useContext(PagesContext)
     const [selecting, setSelecting] = useState(false)
     const [bestSellers, setBestSellers] = useState([])
-    const [product, setProdutct] = useState('')
+    const [product, setProduct] = useState('')
 
     const token = localStorage.getItem('token')
 
+    const navigate = useNavigate()
+
     function selectItem(item) {
         setSelecting(true)
-        setProdutct(item)
+        setProduct(item)
     }
 
     useEffect(() => {
@@ -53,7 +56,7 @@ export default function Home() {
                 </BestSellers>
             </BestsContainer>
             <ButtonsContainer>
-                <Button text='Catálogo' />
+                <Button func={() => navigate('/catalogo')} text='Catálogo' />
                 <Button text='Encomenda' />
             </ButtonsContainer>
 
