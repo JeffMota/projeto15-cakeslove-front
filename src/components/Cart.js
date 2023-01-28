@@ -1,11 +1,14 @@
 import { TbShoppingCart } from 'react-icons/tb'
 import { IconContext } from "react-icons";
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart({ num }) {
 
+    const navigate = useNavigate()
+
     return (
-        <CartContainer>
+        <CartContainer onClick={() => navigate('/confirme-pedido')}>
             <NumBox>{num}</NumBox>
             <IconContext.Provider value={{ color: "#89E0E0", className: "global-class-name", size: "3em" }}>
                 <div>

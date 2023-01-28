@@ -27,7 +27,7 @@ const TitleContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    font-size: 20px;
+    font-size: 16px;
     color: #FA9D9D;
 `
 const Icon = styled.div`
