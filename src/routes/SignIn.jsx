@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import logo from "../assets/img/Logo.png"
 import axios from "axios"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 
 export default function LoginPage() {
@@ -11,6 +11,12 @@ export default function LoginPage() {
   const { setInfosUser } = useContext(AuthContext)
   const navigate = useNavigate()
 
+  //Persistência de login
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/home')
+    }
+  }, [])
 
 
   function handleLogin(e) {
