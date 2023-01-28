@@ -45,6 +45,8 @@ const CardContainer = styled.div`
             margin-bottom: 5px;
             color: #F7F3D2;
 
+            font-size: clamp(1.2em, 5vw, 1.5em);
+
             -webkit-text-stroke-width: 1.5px;
             -webkit-text-stroke-color: #9E7972;
         }
