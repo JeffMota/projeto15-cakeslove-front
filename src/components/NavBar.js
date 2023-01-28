@@ -31,6 +31,8 @@ const NavContainer = styled.div`
     left: 0;
     top: 0;
 
+    z-index: 1;
+
     border-radius: 0 0 10px 10px;
 
     font-family: 'IM Fell English SC', serif;
