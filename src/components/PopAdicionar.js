@@ -18,11 +18,18 @@ export default function PopAdicionar({ product, setSelecting }) {
 
     return (
         <PopContainer>
-            <h2>{product.name} - {product.price}</h2>
+            <h2>{product.name} - R$ {product.price.replace('.', ',')}</h2>
             <div>
-                <button onClick={() => setQuant(quant - 1)} >-</button>
+                <button onClick={() => {
+                    if (quant > 1) {
+                        setQuant(quant - 1)
+                    }
+                }} >-</button>
                 <p>{quant}</p>
-                <button onClick={() => setQuant(quant + 1)}>+</button>
+                <button onClick={() => {
+                    if (quant < product.quantity)
+                        setQuant(quant + 1)
+                }}>+</button>
             </div>
             <Button func={adicionaCarrinho} text="Adicionar ao carrinho" />
         </PopContainer>

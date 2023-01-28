@@ -39,10 +39,10 @@ export default function CarrinhoTela() {
                         />)
                     }
                 </ContainerCarrinhoBox>
-                <div>
+                <Preco>
                     <p>Total</p>
                     <div>{total}</div>
-                </div>
+                </Preco>
             </CarrinhoBox>
         </CarrinhoContainer>
     )
@@ -55,9 +55,8 @@ const CarrinhoContainer = styled.div`
     width: 100vw;
     height: 100vh;
 
-    padding-top: 40px;
+    padding-top: 150px;
 
-    justify-content: center;
     align-items: center;
 
     overflow-y: scroll;
@@ -69,6 +68,7 @@ const CarrinhoBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     width: 85%;
     padding: 20px 0;
 
@@ -87,4 +87,8 @@ const ContainerCarrinhoBox = styled.div`
     height: 90%;
 
     overflow-y: scroll;
+`
+const Preco = styled.div`
+    display: flex;
+    background-color: red;
 `
