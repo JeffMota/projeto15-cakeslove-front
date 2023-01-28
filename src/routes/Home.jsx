@@ -36,6 +36,9 @@ export default function Home() {
             let aux = res.data
             setBestSellers(aux)
         })
+        promise.catch(err => {
+            navigate('/')
+        })
     }, [])
 
     return (

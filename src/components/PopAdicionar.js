@@ -49,6 +49,8 @@ const PopContainer = styled.div`
     position: fixed;
     top: 200px;
 
+    color: #605343;
+
     >div{
         display: flex;
         margin: 10px;
