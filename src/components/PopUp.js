@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import PopAdicionar from "./PopAdicionar"
 
-export default function PopUp({ setSelecting }) {
+export default function PopUp({ product, setSelecting }) {
     return (
         <>
-            <PopAdicionar setSelecting={setSelecting} />
+            <PopAdicionar product={product} setSelecting={setSelecting} />
             <PopUpContainer onClick={() => setSelecting(false)} />
         </>
     )

@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react'
+import axios from 'axios'
+import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Button from '../components/Button'
 import CardMaisVendido from '../components/CardMaisVendido'
@@ -10,19 +11,45 @@ import { PagesContext } from '../contexts/PagesContext.js'
 export default function Home() {
     const [carrinho, setCarrinho] = useContext(PagesContext)
     const [selecting, setSelecting] = useState(false)
+    const [bestSellers, setBestSellers] = useState([])
+    const [product, setProdutct] = useState('')
+
+    const token = localStorage.getItem('token')
+
+    function selectItem(item) {
+        setSelecting(true)
+        setProdutct(item)
+    }
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }
+
+        const promise = axios.get(`${process.env.REACT_APP_API_URL}/produtos/mais-vendidos`, config)
+        promise.then(res => {
+            let aux = res.data
+            setBestSellers(aux)
+        })
+    }, [])
 
     return (
         <HomeContainer selecting={selecting}>
             <NavBar />
-            {(carrinho > 0) && <Cart num={carrinho} />}
+            {(carrinho.length > 0) && <Cart num={carrinho.length} />}
             <BestsContainer>
                 <h2>Mais vendidos</h2>
                 <BestSellers >
-                    <CardMaisVendido func={() => setSelecting(true)} name='Bolo de Milho' imgURL='https://img.cybercook.com.br/receitas/641/bolo-de-milho-4.jpeg' />
-                    <CardMaisVendido name='Pudim' imgURL='https://img.itdg.com.br/tdg/images/recipes/000/031/593/318825/318825_original.jpg?mode=crop&width=710&height=400' />
-                    <CardMaisVendido name='Bolo de Milho' imgURL='https://img.cybercook.com.br/receitas/641/bolo-de-milho-4.jpeg' />
-                    <CardMaisVendido name='Bolo de Milho' imgURL='https://img.cybercook.com.br/receitas/641/bolo-de-milho-4.jpeg' />
-                    <CardMaisVendido name='Bolo de Milho' imgURL='https://img.cybercook.com.br/receitas/641/bolo-de-milho-4.jpeg' />
+                    {(bestSellers.length > 0) && bestSellers.map(bs =>
+                        <CardMaisVendido
+                            key={bs._id}
+                            name={bs.name}
+                            imgURL={bs.imgURL}
+                            func={() => selectItem(bs)}
+                        />
+                    )}
                 </BestSellers>
             </BestsContainer>
             <ButtonsContainer>
@@ -30,7 +57,7 @@ export default function Home() {
                 <Button text='Encomenda' />
             </ButtonsContainer>
 
-            {(selecting) && <PopUp selecting={selecting} setSelecting={setSelecting} />}
+            {(selecting) && <PopUp product={product} setSelecting={setSelecting} />}
 
         </HomeContainer>
     )

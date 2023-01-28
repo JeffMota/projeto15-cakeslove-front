@@ -3,19 +3,22 @@ import styled from "styled-components"
 import Button from "./Button"
 import { PagesContext } from "../contexts/PagesContext"
 
-export default function PopAdicionar({ setSelecting }) {
+export default function PopAdicionar({ product, setSelecting }) {
     const [quant, setQuant] = useState(1)
     const [carrinho, setCarrinho] = useContext(PagesContext)
 
     function adicionaCarrinho() {
-        let aux = carrinho + quant
+        let aux = [...carrinho]
+        for (let i = 0; i < quant; i++) {
+            aux.push(product)
+        }
         setCarrinho(aux)
         setSelecting(false)
     }
 
     return (
         <PopContainer>
-            <h2>Bolo de milho</h2>
+            <h2>{product.name}</h2>
             <div>
                 <button onClick={() => setQuant(quant - 1)} >-</button>
                 <p>{quant}</p>

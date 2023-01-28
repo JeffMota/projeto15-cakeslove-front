@@ -44,7 +44,7 @@ const LogoContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    width: 220px;
+    width: 240px;
     height: 100%;
     >img{
             height: 80%;

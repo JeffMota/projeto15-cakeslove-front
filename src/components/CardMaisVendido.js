@@ -18,7 +18,7 @@ const MaisVendidoContainer = styled.div`
     align-items: center;
 
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 13px;
     color: #FFFF;
 
     -webkit-text-stroke-width: 1.5px;

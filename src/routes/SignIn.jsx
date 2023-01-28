@@ -21,7 +21,8 @@ export default function LoginPage() {
     const promise = axios.post(`${process.env.REACT_APP_API_URL}/sign-in`, body)
 
     promise.then(res => {
-      setInfosUser(res.data.token)
+      localStorage.setItem('token', res.data)
+      setInfosUser(res.data)
       navigate("/home")
     })
     promise.catch(err => {
