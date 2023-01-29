@@ -9,17 +9,15 @@ import PopConfirmar from "../components/PopConfirmar"
 import axios from 'axios'
 
 export default function CarrinhoTela() {
-    const [carrinho, setCarrinho] = useContext(PagesContext)
-    const [total, setTotal] = useState(0)
-    const [selected, setSelected] = useState('Dinheiro')
+    const [carrinho, setCarrinho, total, setTotal, selected, setSelected] = useContext(PagesContext)
     const [selecting, setSelecting] = useState(false)
     const buttons = ['Pix', 'Dinheiro', 'Cartão']
 
     useEffect(() => {
 
         axios.get(`${process.env.REACT_APP_API_URL}/carrinho`)
-        .then((res) => setCarrinho(res.data))
-        .catch((err) => console.log(err.response.data))
+            .then((res) => setCarrinho(res.data))
+            .catch((err) => console.log(err.response.data))
         let aux = total
         carrinho.forEach(p => {
             aux = aux + Number(p.price)
@@ -35,11 +33,12 @@ export default function CarrinhoTela() {
             quantity: product.quantity,
             imgURL: product.imgURL,
         }
-    
+
         axios.put(`${process.env.REACT_APP_API_URL}/carrinho`, body)
-        .then((res) => {
-            setCarrinho(res.data)})
-        .catch((err) => console.log(err.response.data))
+            .then((res) => {
+                setCarrinho(res.data)
+            })
+            .catch((err) => console.log(err.response.data))
 
         // eslint-disable-next-line no-restricted-globals
         if (confirm('Deseja remover esse item?')) {
