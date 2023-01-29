@@ -6,6 +6,7 @@ import AuthProvider from './contexts/AuthContext';
 import PagesContextProvider from './contexts/PagesContext';
 import Catalogo from './routes/Catalogo';
 import CarrinhoTela from './routes/Carrinho';
+import UserPage from './routes/UserPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/catalogo' element={<Catalogo />} />
             <Route path='/confirme-pedido' element={<CarrinhoTela />} />
+            <Route path='/user-page' element={<UserPage />} />
           </Routes>
         </BrowserRouter>
       </PagesContextProvider>

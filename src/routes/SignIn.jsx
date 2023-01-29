@@ -12,11 +12,11 @@ export default function LoginPage() {
   const navigate = useNavigate()
 
   //Persistência de login
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      navigate('/home')
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     navigate('/home')
+  //   }
+  // }, [])
 
 
   function handleLogin(e) {
@@ -27,12 +27,14 @@ export default function LoginPage() {
     const promise = axios.post(`${process.env.REACT_APP_API_URL}/sign-in`, body)
 
     promise.then(res => {
-      localStorage.setItem('token', res.data)
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('admin', JSON.stringify(res.data.admin))
       setInfosUser(res.data)
       navigate("/home")
     })
     promise.catch(err => {
       alert(err.response.data)
+
       setPassword("")
       setEmail("")
     })
