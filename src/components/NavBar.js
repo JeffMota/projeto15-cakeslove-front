@@ -2,15 +2,24 @@ import styled from 'styled-components'
 import Logo from '../assets/img/Logo.png'
 import { BiUserCircle } from 'react-icons/bi'
 import { IconContext } from 'react-icons'
+import { useNavigate } from 'react-router-dom'
 
 export default function NavBar() {
+    const navigate = useNavigate()
+
+    function userPage() {
+        if (localStorage.getItem('admin') === 'true') {
+        }
+        navigate('/user-page')
+    }
+
     return (
         <NavContainer>
             <LogoContainer>
                 <img src={Logo} alt='Logo' />
                 <h1>Cake's Love</h1>
             </LogoContainer>
-            <UserIcon>
+            <UserIcon onClick={userPage}>
                 <IconContext.Provider value={{ size: '3em', color: '#F8C1C1' }}>
                     <BiUserCircle />
                 </IconContext.Provider>
