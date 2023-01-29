@@ -1,10 +1,10 @@
 import styled from "styled-components"
-import PopAdicionar from "./PopAdicionar"
 
-export default function PopUp({ product, setSelecting }) {
+export default function PopUp(props) {
+    const { setSelecting } = props
     return (
         <>
-            <PopAdicionar product={product} setSelecting={setSelecting} />
+            {props.children}
             <PopUpContainer onClick={() => setSelecting(false)} />
         </>
     )
@@ -21,7 +21,8 @@ const PopUpContainer = styled.div`
     position: fixed;
     top: 0;
 
-    background-color: black;
-    opacity: 0.4;
+    z-index: 1;
+
+    background-color: rgba(0,0,0,0.4);
 
 `

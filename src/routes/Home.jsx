@@ -8,6 +8,7 @@ import Cart from '../components/Cart'
 import NavBar from '../components/NavBar'
 import PopUp from '../components/PopUp'
 import { PagesContext } from '../contexts/PagesContext.js'
+import PopAdicionar from '../components/PopAdicionar'
 
 export default function Home() {
     const [carrinho] = useContext(PagesContext)
@@ -63,8 +64,10 @@ export default function Home() {
                 <Button text='Encomenda' />
             </ButtonsContainer>
 
-            {(selecting) && <PopUp product={product} setSelecting={setSelecting} />}
-
+            {(selecting) &&
+                <PopUp setSelecting={setSelecting} >
+                    <PopAdicionar product={product} setSelecting={setSelecting} />
+                </PopUp>}
         </HomeContainer>
     )
 }

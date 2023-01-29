@@ -42,7 +42,7 @@ const PopContainer = styled.div`
     height: 187px;
     max-width: 370px;
 
-    z-index: 1;
+    z-index: 2;
 
     border-radius: 40px;
 
