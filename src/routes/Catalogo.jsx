@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import CardProduct from '../components/CardProduct'
 import Cart from '../components/Cart'
 import NavBar from '../components/NavBar'
+import PopAdicionar from '../components/PopAdicionar'
 import PopUp from '../components/PopUp'
 import TitlePage from '../components/TitlePage'
 import { PagesContext } from '../contexts/PagesContext.js'
@@ -48,7 +49,10 @@ export default function Catalogo() {
                         func={() => selectItem(p)}
                     />)}
             </ListContainer>
-            {(selecting) && <PopUp product={product} setSelecting={setSelecting} />}
+            {(selecting) &&
+                <PopUp setSelecting={setSelecting} >
+                    <PopAdicionar product={product} setSelecting={setSelecting} />
+                </PopUp>}
 
         </CatalogoContainer>
     )

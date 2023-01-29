@@ -4,11 +4,14 @@ import NavBar from "../components/NavBar"
 import TitlePage from "../components/TitlePage"
 import { PagesContext } from "../contexts/PagesContext"
 import CardProduCarrinho from "../components/CardProduCarrinho"
+import PopUp from "../components/PopUp"
+import PopConfirmar from "../components/PopConfirmar"
 
 export default function CarrinhoTela() {
     const [carrinho, setCarrinho] = useContext(PagesContext)
     const [total, setTotal] = useState(0)
     const [selected, setSelected] = useState('Dinheiro')
+    const [selecting, setSelecting] = useState(false)
     const buttons = ['Pix', 'Dinheiro', 'Cartão']
 
     useEffect(() => {
@@ -24,6 +27,17 @@ export default function CarrinhoTela() {
         if (confirm('Deseja remover esse item?')) {
             let aux = []
             let cont = 0
+
+            //procurando produtos repetidos
+            for (let i = 0; i < carrinho.length; i++) {
+                for (let j = i + 1; j < carrinho.length; j++) {
+                    if (carrinho[i].name === carrinho[j].name) {
+                        cont = 0
+                    } else cont = 1
+                }
+            }
+
+            //removendo um único produto repetido
             carrinho.forEach(p => {
                 if (p.name !== product.name) {
                     aux.push(p)
@@ -31,11 +45,10 @@ export default function CarrinhoTela() {
                 else {
                     if (cont === 0) {
                         aux.push(p)
-                        cont = 1
+                        cont += 1
                     }
                 }
             })
-
             setCarrinho(aux)
             let j = total - Number(product.price)
             setTotal(j)
@@ -72,8 +85,12 @@ export default function CarrinhoTela() {
             </PagamentoBox>
             <ButtonsContainer>
                 <button>Entregar</button>
-                <button>Retirar</button>
+                <button onClick={() => setSelecting(true)}>Retirar</button>
             </ButtonsContainer>
+            {(selecting) &&
+                <PopUp setSelecting={setSelecting} >
+                    <PopConfirmar setSelecting={setSelecting} pagamento={selected} total={total} carrinho={carrinho} />
+                </PopUp>}
         </CarrinhoContainer>
     )
 }
@@ -124,6 +141,7 @@ const Preco = styled.div`
 
     display: flex;
     width: 90%;
+    margin-top: 10px;
     justify-content: space-between;
 
 `
