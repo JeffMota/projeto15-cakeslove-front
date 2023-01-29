@@ -7,6 +7,7 @@ import PagesContextProvider from './contexts/PagesContext';
 import Catalogo from './routes/Catalogo';
 import CarrinhoTela from './routes/Carrinho';
 import UserPage from './routes/UserPage';
+import Entrega from './routes/Entrega';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path='/catalogo' element={<Catalogo />} />
             <Route path='/confirme-pedido' element={<CarrinhoTela />} />
             <Route path='/user-page' element={<UserPage />} />
+            <Route path='/entrega' element={<Entrega />} />
           </Routes>
         </BrowserRouter>
       </PagesContextProvider>
