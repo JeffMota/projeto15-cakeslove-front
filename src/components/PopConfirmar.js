@@ -1,8 +1,17 @@
+import dayjs from "dayjs"
 import styled from "styled-components"
 
 export default function PopConfirmar({ carrinho, total, pagamento, setSelecting }) {
     function enviarPedido() {
+        const body = {
+            products: carrinho,
+            date: dayjs().format('DD/MM/YYYY'),
+            payment: pagamento,
+            price: total,
+            delivey: false
+        }
 
+        console.log(body)
     }
 
     return (
@@ -24,7 +33,7 @@ export default function PopConfirmar({ carrinho, total, pagamento, setSelecting 
             </Pagamento>
             <ButtonsContainer>
                 <button onClick={() => setSelecting(false)}>Cancelar</button>
-                <button>Confirmar</button>
+                <button onClick={enviarPedido} >Confirmar</button>
             </ButtonsContainer>
         </PopContainer>
     )
