@@ -1,8 +1,34 @@
+import axios from "axios"
+import dayjs from "dayjs"
 import styled from "styled-components"
 
 export default function PopConfirmar({ carrinho, total, pagamento, setSelecting }) {
     function enviarPedido() {
+        const token = localStorage.getItem('token')
 
+        const body = {
+            products: carrinho,
+            date: dayjs().format('DD/MM/YYYY'),
+            payment: pagamento,
+            price: total,
+            delivery: false
+        }
+
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }
+
+        const promise = axios.post(`${process.env.REACT_APP_API_URL}/sell`, body, config)
+        promise.then(res => {
+
+            //Falta Enviar pra pagina de agradecimento
+            setSelecting(false)
+        })
+        promise.catch(err =>
+            alert(err.response.data)
+        )
     }
 
     return (
@@ -24,7 +50,7 @@ export default function PopConfirmar({ carrinho, total, pagamento, setSelecting 
             </Pagamento>
             <ButtonsContainer>
                 <button onClick={() => setSelecting(false)}>Cancelar</button>
-                <button>Confirmar</button>
+                <button onClick={enviarPedido} >Confirmar</button>
             </ButtonsContainer>
         </PopContainer>
     )
