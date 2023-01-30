@@ -87,6 +87,7 @@ const BigInput = styled.input`
         font-weight: 400;
         font-size: 16px;
         line-height: 20px;
+        color: #666666;
         &::placeholder{
             position: absolute;
             top: 15px; 
@@ -105,6 +106,7 @@ const NormalInput = styled.input`
         font-weight: 400;
         font-size: 16px;
         line-height: 20px;
+        color: #666666;
 `
 
 const NameDiv = styled.div`
@@ -121,4 +123,5 @@ const NameDiv = styled.div`
         font-weight: 400;
         font-size: 16px;
         line-height: 20px;
+        color: #666666;
 `
