@@ -2,14 +2,15 @@ import logo from "../assets/img/Logo.png"
 import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { PagesContext } from "../contexts/PagesContext"
 
 
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
+  const{ name, setName} = useContext(PagesContext)
   const [confirmPassword, setconfirmPassword] = useState("")
   const navigate = useNavigate()
 

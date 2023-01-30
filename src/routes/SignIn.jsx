@@ -31,6 +31,7 @@ export default function LoginPage() {
       localStorage.setItem('admin', JSON.stringify(res.data.admin))
       console.log('login deu certo')
       setInfosUser(res.data)
+      console.log(res.data)
       navigate("/home")
     })
     promise.catch(err => {

@@ -64,24 +64,17 @@ const CatalogoContainer = styled.div`
     background-color: #F7F3D2;
     width: 100vw;
     height: 100vh;
-
     padding-top: 30px;
-
     justify-content: center;
     align-items: center;
-
 `
 const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
-
     -webkit-scrollbar:hidden;
-
     align-items: center;
     width: 85%;
     height: 500px;
-
     margin-top: 100px;
-
     overflow-y: scroll;
 `
