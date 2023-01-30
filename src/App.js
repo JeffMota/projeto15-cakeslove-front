@@ -10,6 +10,7 @@ import UserPage from './routes/UserPage';
 import Entrega from './routes/Entrega';
 import ConcluidoR from './routes/ConcluidoR';
 import ConcluidoE from './routes/ConlcuidoE';
+import AdmPage from './routes/AdmPage';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path='/entrega' element={<Entrega />} />
             <Route path='/concluidor' element={<ConcluidoR />} />
             <Route path='/concluidoe' element={<ConcluidoE />} />
+            <Route path='/adm-page' element={<AdmPage />} />
           </Routes>
         </BrowserRouter>
       </PagesContextProvider>
