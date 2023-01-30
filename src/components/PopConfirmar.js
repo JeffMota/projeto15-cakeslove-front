@@ -1,17 +1,26 @@
 import axios from "axios"
 import dayjs from "dayjs"
+import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import { PagesContext } from "../contexts/PagesContext"
 
-export default function PopConfirmar({ carrinho, total, pagamento, setSelecting }) {
+export default function PopConfirmar({ delivery }) {
+    const { carrinho, selected, setSelecting, valorTotal } = useContext(PagesContext)
+    const navigate = useNavigate()
+
     function enviarPedido() {
         const token = localStorage.getItem('token')
+        if (valorTotal === 0) {
+            navigate('/home')
+        }
 
         const body = {
             products: carrinho,
             date: dayjs().format('DD/MM/YYYY'),
-            payment: pagamento,
-            price: total,
-            delivery: false
+            payment: selected,
+            price: valorTotal,
+            delivery: delivery
         }
 
         const config = {
@@ -25,6 +34,12 @@ export default function PopConfirmar({ carrinho, total, pagamento, setSelecting 
 
             //Falta Enviar pra pagina de agradecimento
             setSelecting(false)
+            if (delivery) {
+                navigate("/concluidoe")
+            }
+            else {
+                navigate("/concluidor")
+            }
         })
         promise.catch(err =>
             alert(err.response.data)
@@ -42,11 +57,11 @@ export default function PopConfirmar({ carrinho, total, pagamento, setSelecting 
             </Lista>
             <Preco>
                 <p>Total</p>
-                <p>R$ {(String(total.toFixed(2))).replace('.', ',')}</p>
+                <p>R$ {(String(valorTotal.toFixed(2))).replace('.', ',')}</p>
             </Preco>
             <Pagamento>
                 <p>Forma de pagamento</p>
-                <p>{pagamento}</p>
+                <p>{selected}</p>
             </Pagamento>
             <ButtonsContainer>
                 <button onClick={() => setSelecting(false)}>Cancelar</button>

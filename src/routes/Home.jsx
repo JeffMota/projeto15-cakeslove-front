@@ -11,8 +11,7 @@ import { PagesContext } from '../contexts/PagesContext.js'
 import PopAdicionar from '../components/PopAdicionar'
 
 export default function Home() {
-    const [carrinho] = useContext(PagesContext)
-    const [selecting, setSelecting] = useState(false)
+    const { carrinho, selecting, setSelecting } = useContext(PagesContext)
     const [bestSellers, setBestSellers] = useState([])
     const [product, setProduct] = useState('')
 

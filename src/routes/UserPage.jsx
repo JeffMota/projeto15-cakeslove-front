@@ -4,8 +4,16 @@ import TitlePage from "../components/TitlePage"
 import { IconContext } from "react-icons"
 import { TbLogout } from "react-icons/tb"
 import { BiUserCircle } from "react-icons/bi"
+import { useNavigate } from "react-router-dom"
 
 export default function UserPage() {
+    const navigate = useNavigate()
+
+    function logout() {
+        localStorage.removeItem('token')
+        localStorage.removeItem('admin')
+        navigate('/')
+    }
 
     return (
         <UserPageContainer>
@@ -14,7 +22,7 @@ export default function UserPage() {
                     <img src={Logo} alt='Logo' />
                     <h1>Cake's Love</h1>
                 </LogoContainer>
-                <UserIcon>
+                <UserIcon onClick={logout}>
                     <IconContext.Provider value={{ size: '3.5em', color: '#FFFFFF' }}>
                         <TbLogout />
                     </IconContext.Provider>

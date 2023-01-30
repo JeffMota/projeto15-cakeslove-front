@@ -3,13 +3,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './routes/SignIn';
 import SignUpPage from './routes/SignUp';
 import AuthProvider from './contexts/AuthContext';
-import PagesContextProvider from './contexts/PagesContext';
+import PagesContextProvider, { PagesContext } from './contexts/PagesContext';
 import Catalogo from './routes/Catalogo';
 import CarrinhoTela from './routes/Carrinho';
 import UserPage from './routes/UserPage';
 import Entrega from './routes/Entrega';
+import ConcluidoR from './routes/ConcluidoR';
+import ConcluidoE from './routes/ConlcuidoE';
 
 function App() {
+
   return (
     <AuthProvider>
       <PagesContextProvider>
@@ -22,6 +25,8 @@ function App() {
             <Route path='/confirme-pedido' element={<CarrinhoTela />} />
             <Route path='/user-page' element={<UserPage />} />
             <Route path='/entrega' element={<Entrega />} />
+            <Route path='/concluidor' element={<ConcluidoR />} />
+            <Route path='/concluidoe' element={<ConcluidoE />} />
           </Routes>
         </BrowserRouter>
       </PagesContextProvider>

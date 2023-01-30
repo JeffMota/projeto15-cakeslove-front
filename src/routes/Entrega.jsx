@@ -11,21 +11,27 @@ export default function Entrega() {
     const [endereco, setEndereco] = useState('')
     const [referencia, setReferencia] = useState('')
 
-    const [selecting, setSelecting, total, carrinho, selected] = useContext(PagesContext)
+
+    const { selecting, setSelecting, valorTotal } = useContext(PagesContext)
+
+    function confirmarPedido(e) {
+        e.preventDefault()
+        setSelecting(true)
+    }
 
     return (
         <EntragaContainer>
             <NavBar />
             <TitlePage title="Local de Entrega" />
-            <FormEntrega>
-                <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" type="text" />
-                <input onChange={(e) => setEndereco(e.target.value)} placeholder="Endereço" type="text" />
-                <input onChange={(e) => setReferencia(e.target.value)} placeholder="Referência" type="text" />
+            <FormEntrega onSubmit={(e) => confirmarPedido(e)}>
+                <input required onChange={(e) => setNome(e.target.value)} placeholder="Nome" type="text" />
+                <input required onChange={(e) => setEndereco(e.target.value)} placeholder="Endereço" type="text" />
+                <input required onChange={(e) => setReferencia(e.target.value)} placeholder="Referência" type="text" />
                 <button type="submit" >Confirmar</button>
             </FormEntrega>
             {(selecting) &&
                 <PopUp setSelecting={setSelecting} >
-                    <PopConfirmar setSelecting={setSelecting} pagamento={selected} total={total} carrinho={carrinho} />
+                    <PopConfirmar delivery={true} setSelecting={setSelecting} total={valorTotal} />
                 </PopUp>}
         </EntragaContainer>
     )

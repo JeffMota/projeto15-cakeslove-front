@@ -10,20 +10,24 @@ import { useNavigate } from "react-router-dom"
 
 
 export default function CarrinhoTela() {
-    const [carrinho, setCarrinho, selected, setSelected] = useContext(PagesContext)
-    const [selecting, setSelecting] = useState(false)
+    const { carrinho, setCarrinho, selected, setSelected, setValorTotal, selecting, setSelecting } = useContext(PagesContext)
+
     const [total, setTotal] = useState(0)
     const buttons = ['Pix', 'Dinheiro', 'Cartão']
+    const msgRetirada = "Agradecemos a preferência! Seu Pedido já está esperando por você!"
+    const msgEntrega = "Agradecemos a preferência! Seu Pedido já está esperando por você!"
 
     const navigate = useNavigate()
 
     useEffect(() => {
+        setSelecting(false)
 
         let aux = total
         carrinho.forEach(p => {
             aux = aux + Number(p.price)
         })
         setTotal(aux)
+        setValorTotal(aux)
     }, [])
 
     function delItem(product) {
@@ -62,6 +66,7 @@ export default function CarrinhoTela() {
             setCarrinho(aux)
             let j = total - Number(product.price)
             setTotal(j)
+            setValorTotal(j)
         }
     }
 
@@ -95,12 +100,12 @@ export default function CarrinhoTela() {
                 </div>
             </PagamentoBox>
             <ButtonsContainer>
-                <button>Entregar</button>
+                <button onClick={() => navigate('/entrega')}>Entregar</button>
                 <button onClick={() => setSelecting(true)}>Retirar</button>
             </ButtonsContainer>
             {(selecting) &&
                 <PopUp setSelecting={setSelecting} >
-                    <PopConfirmar setSelecting={setSelecting} pagamento={selected} total={total} carrinho={carrinho} />
+                    <PopConfirmar setSelecting={setSelecting} delivery={false} pagamento={selected} total={total} />
                 </PopUp>}
         </CarrinhoContainer>
     )

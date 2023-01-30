@@ -1,7 +1,9 @@
+import { useContext } from "react"
 import styled from "styled-components"
+import { PagesContext } from "../contexts/PagesContext"
 
 export default function PopUp(props) {
-    const { setSelecting } = props
+    const { setSelecting } = useContext(PagesContext)
     return (
         <>
             {props.children}
