@@ -11,19 +11,19 @@ export default function PopAdicionar({ product, setSelecting }) {
 
     function adicionaCarrinho() {
 
-            let aux = [...carrinho]
-            for (let i = 0; i < quant; i++) {
-                aux.push(product)
-            }
-            setCarrinho(aux)
-            setSelecting(false)
-        
-    
+        let aux = [...carrinho]
+        for (let i = 0; i < quant; i++) {
+            aux.push(product)
+        }
+        setCarrinho(aux)
+        setSelecting(false)
+
+
     }
 
     return (
         <PopContainer>
-            <h2>{product.name} - R$ {product.price.replace('.', ',')}</h2>
+            <h2>{product.name} - R$ {(String(product.price)).replace('.', ',')}</h2>
             <div>
                 <button onClick={() => {
                     if (quant > 1) {

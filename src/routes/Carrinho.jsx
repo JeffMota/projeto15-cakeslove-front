@@ -6,14 +6,16 @@ import { PagesContext } from "../contexts/PagesContext"
 import CardProduCarrinho from "../components/CardProduCarrinho"
 import PopUp from "../components/PopUp"
 import PopConfirmar from "../components/PopConfirmar"
+import { useNavigate } from "react-router-dom"
 
 
 export default function CarrinhoTela() {
-    const [carrinho, setCarrinho, total, setTotal, selected, setSelected] = useContext(PagesContext)
+    const [carrinho, setCarrinho, selected, setSelected] = useContext(PagesContext)
     const [selecting, setSelecting] = useState(false)
+    const [total, setTotal] = useState(0)
     const buttons = ['Pix', 'Dinheiro', 'Cartão']
 
-
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -29,6 +31,12 @@ export default function CarrinhoTela() {
         if (confirm('Deseja remover esse item?')) {
             let aux = []
             let cont = 0
+
+            if (carrinho.length === 1) {
+                setCarrinho([])
+                navigate('/home')
+                return
+            }
 
             //procurando produtos repetidos
             for (let i = 0; i < carrinho.length; i++) {
@@ -56,7 +64,7 @@ export default function CarrinhoTela() {
             setTotal(j)
         }
     }
-    
+
 
     return (
         <CarrinhoContainer>
