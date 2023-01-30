@@ -7,9 +7,10 @@ export default function PagesContextProvider({ children }) {
     const [selected, setSelected] = useState("Dinheiro")
     const [selecting, setSelecting] = useState(false)
     const [valorTotal, setValorTotal] = useState(0)
+    const [name, setName] = useState("")
 
     return (
-        <PagesContext.Provider value={{ carrinho, setCarrinho, selected, setSelected, selecting, setSelecting, valorTotal, setValorTotal }}>
+        <PagesContext.Provider value={{ carrinho, setCarrinho, selected, setSelected, selecting, setSelecting, valorTotal, setValorTotal, name, setName }}>
             {children}
         </PagesContext.Provider>
     )

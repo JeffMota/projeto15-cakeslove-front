@@ -60,7 +60,7 @@ export default function Home() {
             </BestsContainer>
             <ButtonsContainer>
                 <Button func={() => navigate('/catalogo')} text='Catálogo' />
-                <Button text='Encomenda' />
+                <Button func={() => navigate('/orcamento')} text='Encomenda' />
             </ButtonsContainer>
 
             {(selecting) &&

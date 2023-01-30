@@ -8,6 +8,7 @@ import Catalogo from './routes/Catalogo';
 import CarrinhoTela from './routes/Carrinho';
 import UserPage from './routes/UserPage';
 import Entrega from './routes/Entrega';
+import Orcamento from './routes/Orcamento';
 import ConcluidoR from './routes/ConcluidoR';
 import ConcluidoE from './routes/ConlcuidoE';
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/confirme-pedido' element={<CarrinhoTela />} />
             <Route path='/user-page' element={<UserPage />} />
             <Route path='/entrega' element={<Entrega />} />
+            <Route path='/orcamento' element={<Orcamento/>} />
             <Route path='/concluidor' element={<ConcluidoR />} />
             <Route path='/concluidoe' element={<ConcluidoE />} />
           </Routes>
