@@ -9,14 +9,14 @@ import PopConfirmar from "../components/PopConfirmar"
 
 
 export default function CarrinhoTela() {
-    const [carrinho, setCarrinho] = useContext(PagesContext)
-    const [total, setTotal] = useState(0)
-    const [selected, setSelected] = useState('Dinheiro')
+    const [carrinho, setCarrinho, total, setTotal, selected, setSelected] = useContext(PagesContext)
     const [selecting, setSelecting] = useState(false)
     const buttons = ['Pix', 'Dinheiro', 'Cartão']
 
 
+
     useEffect(() => {
+
         let aux = total
         carrinho.forEach(p => {
             aux = aux + Number(p.price)
