@@ -10,7 +10,7 @@ import TitlePage from '../components/TitlePage'
 import { PagesContext } from '../contexts/PagesContext.js'
 
 export default function Catalogo() {
-    const [carrinho] = useContext(PagesContext)
+    const { carrinho } = useContext(PagesContext)
     const [selecting, setSelecting] = useState(false)
     const [allProducts, setAllProducts] = useState([])
     const [product, setProduct] = useState('')

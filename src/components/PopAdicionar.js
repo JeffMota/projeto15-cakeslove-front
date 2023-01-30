@@ -6,7 +6,7 @@ import { PagesContext } from "../contexts/PagesContext"
 
 export default function PopAdicionar({ product, setSelecting }) {
     const [quant, setQuant] = useState(1)
-    const [carrinho, setCarrinho] = useContext(PagesContext)
+    const { carrinho, setCarrinho } = useContext(PagesContext)
 
 
     function adicionaCarrinho() {
