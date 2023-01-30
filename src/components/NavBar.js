@@ -10,6 +10,7 @@ export default function NavBar() {
     function userPage() {
         if (localStorage.getItem('admin') === 'true') {
             navigate('/admin-page')
+            return
         }
         navigate('/user-page')
     }
