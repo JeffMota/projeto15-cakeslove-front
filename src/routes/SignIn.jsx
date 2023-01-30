@@ -29,12 +29,13 @@ export default function LoginPage() {
     promise.then(res => {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('admin', JSON.stringify(res.data.admin))
+      console.log('login deu certo')
       setInfosUser(res.data)
       navigate("/home")
     })
     promise.catch(err => {
       alert(err.response.data)
-
+      console.log('login deu ruim')
       setPassword("")
       setEmail("")
     })

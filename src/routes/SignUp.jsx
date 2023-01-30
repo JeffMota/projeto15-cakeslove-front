@@ -27,6 +27,7 @@ export default function SignUpPage() {
 
     promise.then(res => {
       alert(res.data)
+      console.log('cadastrar deu certo')
       navigate("/")
     })
     promise.catch(err => {

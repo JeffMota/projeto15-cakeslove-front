@@ -6,7 +6,7 @@ import { PagesContext } from "../contexts/PagesContext"
 import CardProduCarrinho from "../components/CardProduCarrinho"
 import PopUp from "../components/PopUp"
 import PopConfirmar from "../components/PopConfirmar"
-import axios from 'axios'
+
 
 export default function CarrinhoTela() {
     const [carrinho, setCarrinho] = useContext(PagesContext)
@@ -15,11 +15,8 @@ export default function CarrinhoTela() {
     const [selecting, setSelecting] = useState(false)
     const buttons = ['Pix', 'Dinheiro', 'Cartão']
 
-    useEffect(() => {
 
-        axios.get(`${process.env.REACT_APP_API_URL}/carrinho`)
-        .then((res) => setCarrinho(res.data))
-        .catch((err) => console.log(err.response.data))
+    useEffect(() => {
         let aux = total
         carrinho.forEach(p => {
             aux = aux + Number(p.price)
@@ -28,22 +25,9 @@ export default function CarrinhoTela() {
     }, [])
 
     function delItem(product) {
-        const body = {
-            name: product.name,
-            description: product.description,
-            price: product.price,
-            quantity: product.quantity,
-            imgURL: product.imgURL,
-        }
-    
-        axios.put(`${process.env.REACT_APP_API_URL}/carrinho`, body)
-        .then((res) => {
-            setCarrinho(res.data)})
-        .catch((err) => console.log(err.response.data))
-
         // eslint-disable-next-line no-restricted-globals
         if (confirm('Deseja remover esse item?')) {
-            // let aux = []
+            let aux = []
             let cont = 0
 
             //procurando produtos repetidos
@@ -56,22 +40,23 @@ export default function CarrinhoTela() {
             }
 
             //removendo um único produto repetido
-            // carrinho.forEach(p => {
-            //     if (p.name !== product.name) {
-            //         aux.push(p)
-            //     }
-            //     else {
-            //         if (cont === 0) {
-            //             aux.push(p)
-            //             cont += 1
-            //         }
-            //     }
-            // })
-            // setCarrinho(aux)
+            carrinho.forEach(p => {
+                if (p.name !== product.name) {
+                    aux.push(p)
+                }
+                else {
+                    if (cont === 0) {
+                        aux.push(p)
+                        cont += 1
+                    }
+                }
+            })
+            setCarrinho(aux)
             let j = total - Number(product.price)
             setTotal(j)
         }
     }
+    
 
     return (
         <CarrinhoContainer>

@@ -2,33 +2,23 @@ import { useState, useContext } from "react"
 import styled from "styled-components"
 import Button from "./Button"
 import { PagesContext } from "../contexts/PagesContext"
-import axios from 'axios'
+
 
 export default function PopAdicionar({ product, setSelecting }) {
     const [quant, setQuant] = useState(1)
     const [carrinho, setCarrinho] = useContext(PagesContext)
 
+
     function adicionaCarrinho() {
 
-    const body = {
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        quantity: product.quantity,
-        imgURL: product.imgURL,
-    }
-
-    axios.post(`${process.env.REACT_APP_API_URL}/carrinho`, body)
-    .then((res) => {
-        setSelecting(false)
-        setCarrinho(res.data)})
-    .catch((err) => console.log(err.response.data))
-
-        // let aux = [...carrinho]
-        // for (let i = 0; i < quant; i++) {
-        //     aux.push(product)
-        // }
-        // setCarrinho(aux)
+            let aux = [...carrinho]
+            for (let i = 0; i < quant; i++) {
+                aux.push(product)
+            }
+            setCarrinho(aux)
+            setSelecting(false)
+        
+    
     }
 
     return (
