@@ -28,7 +28,7 @@ function App() {
             <Route path='/entrega' element={<Entrega />} />
             <Route path='/concluidor' element={<ConcluidoR />} />
             <Route path='/concluidoe' element={<ConcluidoE />} />
-            <Route path='/adm-page' element={<AdmPage />} />
+            <Route path='/admin-page' element={<AdmPage />} />
           </Routes>
         </BrowserRouter>
       </PagesContextProvider>

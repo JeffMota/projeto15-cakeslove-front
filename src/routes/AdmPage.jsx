@@ -6,13 +6,19 @@ import { TbLogout } from "react-icons/tb"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import CardProduct from "../components/CardProduct"
+import CardProduCarrinho from "../components/CardProduCarrinho"
 
 export default function AdmPage() {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
     const [allProducts, setAllProducts] = useState([])
+
+    const [name, setName] = useState()
+    const [description, setDescription] = useState()
+    const [quantity, setQuantity] = useState()
+    const [price, setPrice] = useState()
+    const [imgURL, setImgURL] = useState()
 
     function getLista() {
         const token = localStorage.getItem('token')
@@ -63,6 +69,37 @@ export default function AdmPage() {
         }
     }
 
+    function newItem(e) {
+        e.preventDefault()
+
+        const body = {
+            name,
+            description,
+            price,
+            quantity,
+            imgURL
+        }
+
+        const token = localStorage.getItem('token')
+
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }
+
+        const promise = axios.post(`${process.env.REACT_APP_API_URL}/produtos`, body, config)
+        promise.then(res => {
+            alert('Produto Cadastrado!')
+            getLista()
+        })
+        promise.catch(err => {
+            alert('Infelizmente ocorreu um erro!')
+            setImgURL('')
+        })
+
+    }
+
     function logout() {
         localStorage.removeItem('token')
         localStorage.removeItem('admin')
@@ -82,16 +119,35 @@ export default function AdmPage() {
                     </IconContext.Provider>
                 </UserIcon>
             </NavContainer>
+
+            <ContainerCarrinhoBox onSubmit={e => newItem(e)}>
+                <input onChange={(e) => setName(e.target.value)} placeholder="Nome do Produto" type='text' />
+                <div>
+                    <input
+                        onChange={
+                            e => {
+                                let aux = e.target.value
+                                aux = String(aux)
+                                setPrice(aux)
+                            }
+                        }
+                        placeholder="Preço" type='number' step="0.01" />
+                    <input onChange={(e) => setQuantity(e.target.value)} placeholder="Quantidade" type='number' />
+                </div>
+                <input onChange={e => setDescription(e.target.value)} placeholder="Descrição" type='text' />
+                <input value={imgURL} onChange={e => setImgURL(e.target.value)} placeholder="URL da imagem" type='text' />
+                <button type="submit">Adicionar</button>
+            </ContainerCarrinhoBox>
+
             <ListContainer>
                 {(allProducts) && allProducts.map(p =>
-                    <CardProduct
+                    <CardProduCarrinho
                         key={p._id}
                         product={p}
                         func={() => delItem(p)}
                     />)}
             </ListContainer>
-            <TitlePage title="Meus dados" />
-            <h2>Seus dados serão mostrados aqui em breve</h2>
+            <TitlePage title="Cadastrar Produto" />
         </AdmPageContainer>
     )
 }
@@ -173,5 +229,66 @@ const UserIcon = styled.div`
     align-items: center;
 `
 const ListContainer = styled.div`
-    
+    display: flex;
+    flex-direction: column;
+
+    -webkit-scrollbar:hidden;
+
+    align-items: center;
+    width: 100%;
+
+    margin-top: 50px;
+`
+const ContainerCarrinhoBox = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 250px;
+
+    background-color: #89E0E0;
+
+    border-radius: 10px;
+    justify-content: space-around;
+
+    overflow-y: scroll;
+
+    >input{
+        padding: 0 5px;
+        background-color: #F8C1C1;
+        border: none;
+        border-radius: 10px;
+
+        width: 250px;
+        height: 30px;
+    }
+    >div{
+        width: 250px;
+        display: flex;
+        justify-content: space-between;
+        >input{
+            padding: 0 5px;
+            background-color: #F8C1C1;
+            width: 45%;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+        }
+    }
+
+    >:nth-child(3){
+        height: 70px;
+    }
+
+    >button{
+        background-color: #F8C1C1;
+        border: none;
+        border-radius: 20px;
+        font-weight: 700;
+        color: #FFFF;
+        font-size: 16px;
+
+        width: 100px;
+        height: 30px;
+    }
 `
