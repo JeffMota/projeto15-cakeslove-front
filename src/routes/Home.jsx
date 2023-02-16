@@ -9,10 +9,12 @@ import NavBar from '../components/NavBar'
 import PopUp from '../components/PopUp'
 import { PagesContext } from '../contexts/PagesContext.js'
 import PopAdicionar from '../components/PopAdicionar'
+import { Hearts } from 'react-loader-spinner'
 
 export default function Home() {
     const { carrinho, selecting, setSelecting } = useContext(PagesContext)
     const [bestSellers, setBestSellers] = useState([])
+    const [loading, setLoading] = useState(false)
     const [product, setProduct] = useState('')
 
     const token = localStorage.getItem('token')
@@ -31,10 +33,13 @@ export default function Home() {
             }
         }
 
+        setLoading(true)
+
         const promise = axios.get(`${process.env.REACT_APP_API_URL}/produtos/mais-vendidos`, config)
         promise.then(res => {
             let aux = res.data
             setBestSellers(aux)
+            setLoading(false)
         })
         promise.catch(err => {
             navigate('/')
@@ -48,14 +53,27 @@ export default function Home() {
             <BestsContainer>
                 <h2>Mais vendidos</h2>
                 <BestSellers >
-                    {(bestSellers.length > 0) && bestSellers.map(bs =>
-                        <CardMaisVendido
-                            key={bs._id}
-                            name={bs.name}
-                            imgURL={bs.imgURL}
-                            func={() => selectItem(bs)}
-                        />
-                    )}
+                    {
+                        (loading) ?
+                            <Loading>
+                                <Hearts
+                                    height="200"
+                                    width="200"
+                                    color="#89E0E0"
+                                    ariaLabel="hearts-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />
+                            </Loading> :
+                            (bestSellers.length > 0) && bestSellers.map(bs =>
+                                <CardMaisVendido
+                                    key={bs._id}
+                                    name={bs.name}
+                                    imgURL={bs.imgURL}
+                                    func={() => selectItem(bs)}
+                                />
+                            )}
                 </BestSellers>
             </BestsContainer>
             <ButtonsContainer>
@@ -108,4 +126,11 @@ const ButtonsContainer = styled.div`
     justify-content: space-between;
 
     height: 130px;
+`
+const Loading = styled.div`
+    display: flex;
+    width: 100%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
 `

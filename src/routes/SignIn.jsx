@@ -2,25 +2,22 @@ import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import logo from "../assets/img/Logo.png"
 import axios from "axios"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext"
+import { Hearts } from "react-loader-spinner"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
   const { setInfosUser } = useContext(AuthContext)
   const navigate = useNavigate()
-
-  //Persistência de login
-  // useEffect(() => {
-  //   if (localStorage.getItem('token')) {
-  //     navigate('/home')
-  //   }
-  // }, [])
 
 
   function handleLogin(e) {
     e.preventDefault()
+
+    setLoading(true)
 
     const body = { email, password }
 
@@ -29,9 +26,8 @@ export default function LoginPage() {
     promise.then(res => {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('admin', JSON.stringify(res.data.admin))
-      console.log('login deu certo')
       setInfosUser(res.data)
-      console.log(res.data)
+      setLoading(false)
       navigate("/home")
     })
     promise.catch(err => {
@@ -39,6 +35,7 @@ export default function LoginPage() {
       console.log('login deu ruim')
       setPassword("")
       setEmail("")
+      setLoading(false)
     })
 
   }
@@ -49,6 +46,7 @@ export default function LoginPage() {
       <img src={logo} alt="Logo" />
       <StyledForm onSubmit={handleLogin}>
         <StyledInput
+          disabled={loading}
           name="email"
           placeholder="E-mail"
           type="email"
@@ -57,6 +55,7 @@ export default function LoginPage() {
           required
         />
         <StyledInput
+          disabled={loading}
           name="password"
           placeholder="Senha"
           type="password"
@@ -64,12 +63,25 @@ export default function LoginPage() {
           onChange={e => setPassword(e.target.value)}
           required
         />
-        <StyledButton type="submit">
-          Entrar
-        </StyledButton>
+        {
+          (loading) ?
+            <Hearts
+              height="80"
+              width="80"
+              color="#FFFF"
+              ariaLabel="hearts-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            /> :
+            <StyledButton disabled={loading} type="submit">
+              Entrar
+            </StyledButton>
+        }
+
       </StyledForm>
 
-      <StyledLink to="/cadastro">
+      <StyledLink disabled={loading} to="/cadastro">
         Não tem uma conta? <b>Cadastre-se</b>
       </StyledLink>
     </Container>
